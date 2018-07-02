@@ -1,0 +1,17 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# mypy
+.mypy_cache/
+
+# vim
+.*.sw?
+.local.vimrc
+
+# tags
+tags
