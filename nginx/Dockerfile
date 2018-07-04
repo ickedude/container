@@ -1,4 +1,4 @@
-FROM kwoldt/mininit:stretch-reduced
+FROM kwoldt/mininit:stable-reduced
 LABEL maintainer="bug@230woldt.de"
 
 RUN /usr/local/bin/img_build.py --policyrcd forbid \
