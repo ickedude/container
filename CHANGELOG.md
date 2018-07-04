@@ -7,5 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- mininit based nginx dockerfile
+- mininit based nginx docker image
+- mininit based php-fpm docker image
 - build.sh to automate building and tagging of a number of images
