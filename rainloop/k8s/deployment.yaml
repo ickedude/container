@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: rainloop
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rainloop
+        release: 0.1.0
+    spec:
+      volumes:
+        - name: fpm-run-volume
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1M
+      containers:
+        - name: rainloop-backend
+          image: kwoldt/rainloop-backend:1.12.0
+          readinessProbe:
+            exec:
+              command:
+                - /bin/ls
+                - /var/run/php/php7.0-fpm.sock
+          volumeMounts:
+            - mountPath: /var/run/php
+              name: fpm-run/volume
+        - name: rainloop-frontend
+          image: kwoldt/rainloop-frontend:1.12.0
+          ports:
+            - containerPort: 80
+          # readinessProbe:
+          #   httpGet:
+          #     path: /healthz
+          # livenessProbe:
+          #   httpGet:
+          #     path: /healthz
+          volumeMounts:
+            - mountPath: /var/run/php
+              name: fpm-run-volume
