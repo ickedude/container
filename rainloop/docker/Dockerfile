@@ -7,7 +7,7 @@ FROM kwoldt/nginx:${CODE_VERSION}
 ARG MAINTAINER
 ARG DOC_ROOT
 LABEL maintainer=${MAINTAINER}
-COPY resources/static /
+COPY resources/statics /
 RUN chown -R www-data:www-data ${DOC_ROOT} \
  && find ${DOC_ROOT} -type d -exec chmod 750 {} \; \
  && find ${DOC_ROOT} -type f -exec chmod 640 {} \;
