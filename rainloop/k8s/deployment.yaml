@@ -26,7 +26,7 @@ spec:
                 - /var/run/php/php7.0-fpm.sock
           volumeMounts:
             - mountPath: /var/run/php
-              name: fpm-run/volume
+              name: fpm-run-volume
         - name: rainloop-frontend
           image: kwoldt/rainloop-frontend:1.12.0
           ports:
