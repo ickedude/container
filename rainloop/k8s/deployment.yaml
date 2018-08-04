@@ -16,6 +16,12 @@ spec:
           emptyDir:
             medium: Memory
             sizeLimit: 1M
+        - name: rainloop-app-config
+          configMap:
+            name: rainloop-app
+        - name: rainloop-domains-config
+          configMap:
+            name: rainloop-domains
       containers:
         - name: rainloop-backend
           image: kwoldt/rainloop-backend:1.12.0
@@ -27,6 +33,12 @@ spec:
           volumeMounts:
             - mountPath: /var/run/php
               name: fpm-run-volume
+            - mountPath: /var/www/rainloop/data/_data_/_default_/configs
+              name: rainloop-app-config
+              readOnly: true
+            - mountPath: /var/www/rainloop/data/_data_/_default_/domains
+              name: rainloop-domains-config
+              readOnly: true
         - name: rainloop-frontend
           image: kwoldt/rainloop-frontend:1.12.0
           ports:
@@ -40,3 +52,4 @@ spec:
           volumeMounts:
             - mountPath: /var/run/php
               name: fpm-run-volume
+
