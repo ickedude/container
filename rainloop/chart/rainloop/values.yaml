@@ -1,0 +1,341 @@
+# Default values for rainloop.
+# This is a YAML-formatted file.
+---
+replicaCount: 1
+
+image:
+  repository: kwoldt
+  tag: 1.12.1
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+app:
+  # RainLoop Webmail configuration file
+  webmail:
+    # Text displayed as page title (default: "RainLoop Webmail")
+    title:
+    # Text displayed on startup (default: "RainLoop")
+    loadingDescription:
+    faviconUrl:
+    # Theme used by default (default: "Default")
+    theme:
+    # Allow theme selection on settings screen (default: true)
+    allowThemes:
+    allowUserBackground:  # default: false
+    # Language used by default (default: "en")
+    language:
+    # Admin Panel interface language (default: "en")
+    languageAdmin:
+    # Allow language selection on settings screen (default: true)
+    allowLanguagesOnSettings:
+    allowAdditionalAccounts:  # default: true
+    allowAdditionalIdentities:  # default: true
+    # Number of messages displayed on page (default: 20)
+    messagesPerPage:
+    # File size limit (MB) for file upload on compose screen.
+    # 0 for unlimited (default: 25)
+    attachmentSizeLimit:
+  interface:
+    showAttachmentThumbnail:  # default: true
+    useNativeScrollbars:  # default: false
+    newMoveToFolderButton:  # default: true
+  branding:
+    loginLogo:
+    loginBackground:
+    loginDesc:
+    loginCss:
+    loginPowered:  # default: true
+    userCss:
+    userLogo:
+    userLogoTitle:
+    userLogoMessage:
+    userIframeMessage:
+    welcomePageUrl:
+    welcomePageDisplay:  # default: "none"
+  contacts:
+    # Enable contacts
+    enable:  # default: false
+    allowSync:  # default: false
+    syncInterval:  # default: 20
+    type:  # default: "sqlite"
+    pdoDsn:  # default: "mysql:host=127.0.0.1;port=3306;dbname=rainloop"
+    pdoUser:  # default: "root"
+    pdoPassword:
+    suggestionsLimit:  # default: 30
+  security:
+    # Enable CSRF protection (http://en.wikipedia.org/wiki/Cross-site_request_forgery)
+    csrfProtection:  # default: true
+    customServerSignature:  # default: "RainLoop"
+    xFrameOptionsHeader:
+    openpgp:  # default: false
+    # Login and password for web admin panel
+    adminLogin:  # default: "admin"
+    adminPassword:  # default: "12345"
+    # Access settings
+    allowAdminPanel:  # default: true
+    allowTwoFactorAuth:  # default: false
+    forceTwoFactorAuth:  # default: false
+    hideXMailerHeader:  # default: false
+    adminPanelHost:
+    adminPanelKey:  # default: "admin"
+    contentSecurityPolicy:
+    coreInstallAccessDomain:
+  ssl:
+    # Require verification of SSL certificate used.
+    verifyCertificate:  # default: false
+    # Allow self-signed certificates. Requires verify_certificate.
+    allowSelfSigned:  # default: true
+    # Location of Certificate Authority file on local filesystem (/etc/ssl/certs/ca-certificates.crt)
+    cafile:
+    # capath must be a correctly hashed certificate directory. (/etc/ssl/certs/)
+    capath:
+  capa:
+    folders:  # default: true
+    composer:  # default: true
+    contacts:  # default: true
+    settings:  # default: true
+    quota:  # default: true
+    help:  # default: true
+    reload:  # default: true
+    search:  # default: true
+    searchAdv:  # default: true
+    filters:  # default: true
+    xTemplates:  # default: false
+    dangerousActions:  # default: true
+    messageActions:  # default: true
+    messagelistActions:  # default: true
+    attachmentsActions:  # default: true
+  login:
+    defaultDomain:
+    # Allow language selection on webmail login screen
+    allowLanguagesOnLogin:  # default: true
+    determineUserLanguage:  # default: true
+    determineUserDomain:  # default: false
+    welcomePage:  # default: false
+    hideSubmitButton:  # default: true
+    forgotPasswordLinkUrl:
+    registrationLinkUrl:
+    loginLowercase:  # default: true
+    # This option allows webmail to remember the logged in user
+    # once they closed the browser window.
+    # 
+    # Values:
+    #   "DefaultOff" - can be used, disabled by default;
+    #   "DefaultOn"  - can be used, enabled by default;
+    #   "Unused"     - cannot be used
+    # default: "DefaultOff"
+    signMeAuto:
+  plugins:
+    # Enable plugin support
+    enable:  # default: false
+    # List of enabled plugins
+    enabledList:
+  defaults:
+    # Editor mode used by default (Plain, Html, HtmlForced or PlainForced)
+    # default: "Html"
+    viewEditorType:
+    # layout: 0 - no preview, 1 - side preview, 2 - bottom preview
+    # default: 1
+    viewLayout:
+    viewUseCheckboxes:  # default: true
+    autologout:  # default: 30
+    showImages:  # default: false
+    contactsAutosave:  # default: true
+    mailUseThreads:  # default: false
+    allowDraftAutosave:  # default: true
+    mailReplySameFolder:  # default: false
+  logs:
+    # Enable logging
+    enable:  # default: false
+    # Logs entire request only if error occured (php requred)
+    writeOnErrorOnly:  # default: false
+    # Logs entire request only if php error occured
+    writeOnPhpErrorOnly:  # default: false
+    # Logs entire request only if request timeout (in seconds) occured.
+    # default: 0
+    writeOnTimeoutOnly:
+    # Required for development purposes only.
+    # Disabling this option is not recommended.
+    hidePasswords:  # default: true
+    timeOffset:  # default: "0"
+    sessionFilter:
+    # Log filename.
+    # For security reasons, some characters are removed from filename.
+    # Allows for pattern-based folder creation (see examples below).
+    # 
+    # Patterns:
+    #   {date:Y-m-d}  - Replaced by pattern-based date
+    #                   Detailed info: http://www.php.net/manual/en/function.date.php
+    #   {user:email}  - Replaced by user's email address
+    #                   If user is not logged in, value is set to "unknown"
+    #   {user:login}  - Replaced by user's login (the user part of an email)
+    #                   If user is not logged in, value is set to "unknown"
+    #   {user:domain} - Replaced by user's domain name (the domain part of an email)
+    #                   If user is not logged in, value is set to "unknown"
+    #   {user:uid}    - Replaced by user's UID regardless of account currently used
+    # 
+    #   {user:ip}
+    #   {request:ip}  - Replaced by user's IP address
+    # 
+    # Others:
+    #   {imap:login} {imap:host} {imap:port}
+    #   {smtp:login} {smtp:host} {smtp:port}
+    # 
+    # Examples:
+    #   filename: "log-{date:Y-m-d}.txt"
+    #   filename: "{date:Y-m-d}/{user:domain}/{user:email}_{user:uid}.log"
+    #   filename: "{user:email}-{date:Y-m-d}.txt"
+    #
+    # default: "log-{date:Y-m-d}.txt" 
+    filename:
+    # Enable auth logging in a separate file (for fail2ban)
+    authLogging:  # default: false
+    authLoggingFilename:  # default: "fail2ban/auth-{date:Y-m-d}.txt"
+    authLoggingFormat:  # default: "[{date:Y-m-d H:i:s}] Auth failed: ip={request:ip} user={imap:login} host={imap:host} port={imap:port}"
+  debug:
+    # Special option required for development purposes
+    enable:  # default: false
+  social:
+    # Google
+    googleEnable:  # default: false
+    googleEnableAuth:  # default: false
+    googleEnableAuthFast:  # default: false
+    googleEnableDrive:  # default: false
+    googleEnablePreview:  # default: false
+    googleClientId:
+    googleClientSecret:
+    googleApiKey:
+    # Facebook
+    fbEnable:  # default: false
+    fbAppId:
+    fbAppSecret:
+    # Twitter
+    twitterEnable:  # default: false
+    twitterConsumerKey:
+    twitterConsumerSecret:
+    # Dropbox
+    dropboxEnable:  # default: false
+    dropboxApiKey:
+  cache:
+    # The section controls caching of the entire application.
+    # Enables caching in the system
+    enable:  # default: true
+    # Additional caching key. If changed, cache is purged
+    # default: "v1"
+    index:
+    # Can be: files, APC, memcache, redis (beta)
+    # default: "files"
+    fastCacheDriver:
+    # Additional caching key. If changed, fast cache is purged
+    # default: "v1"
+    fastCacheIndex:
+    # Browser-level cache. If enabled, caching is maintainted without using files
+    # default: true
+    http:
+    # Browser-level cache time (seconds, Expires header)
+    # default: 3600
+    httpExpires:
+    # Caching message UIDs when searching and sorting (threading)
+    # default: true
+    serverUids:
+  labs:
+    # Experimental settings. Handle with care.
+    allowMobileVersion:  # default: true
+    ignoreFoldersSubscription:  # default: false
+    checkNewPasswordStrength:  # default: true
+    updateChannel:  # default: "stable"
+    allowGravatar:  # default: true
+    allowPrefetch:  # default: true
+    allowSmartHtmlLinks:  # default: true
+    cacheSystemData:  # default: true
+    dateFromHeaders:  # default: true
+    autocreateSystemFolders:  # default: true
+    allowMessageAppend:  # default: false
+    disableIconvIfMbstringSupported:  # default: false
+    loginFaultDelay:  # default: 1
+    logAjaxResponseWriteLimit:  # default: 300
+    allowHtmlEditorSourceButton:  # default: false
+    allowHtmlEditorBitiButtons:  # default: false
+    allowCtrlEnterOnCompose:  # default: true
+    tryToDetectHiddenImages:  # default: false
+    hideDangerousActions:  # default: false
+    useAppDebugJs:  # default: false
+    useMobileVersionForTablets:  # default: false
+    useAppDebugCss:  # default: false
+    useImapSort:  # default: true
+    useImapForceSelection:  # default: false
+    useImapListSubscribe:  # default: true
+    useImapThread:  # default: true
+    useImapMove:  # default: false
+    useImapExpungeAllOnDelete:  # default: false
+    imapForwardedFlag:  # default: "$Forwarded"
+    imapReadReceiptFlag:  # default: "$ReadReceipt"
+    imapBodyTextLimit:  #default: 555000
+    imapMessageListFastSimpleSearch:  # default: true
+    imapMessageListCountLimitTrigger:  # default: 0
+    imapMessageListDateFilter:  # default: 0
+    imapMessageListPermanentFilter:
+    imapMessageAllHeaders:  # default: false
+    imapLargeThreadLimit:  # default: 50
+    imapFolderListLimit:  # default: 200
+    imapShowLoginAlert:  # default: true
+    imapUseAuthPlain:  # default: true
+    imapUseAuthCramMd5:  # default: false
+    smtpShowServerErrors:  # default: false
+    smtpUseAuthPlain:  # default: true
+    smtpUseAuthCramMd5:  # default: false
+    sieveAllowRawScript:  # default: false
+    sieveUtf8FolderName:  # default: true
+    sieveAuthPlainInitial:  # default: true
+    sieveAllowFileintoInbox:  # default: false
+    imapTimeout:  # default: 300
+    smtpTimeout:  # default: 60
+    sieveTimeout:  # default: 10
+    domainListLimit:  # default: 99
+    mailFuncClearHeaders:  # default: true
+    mailFuncAdditionalParameters:  # default: false
+    faviconStatus:  # default: true
+    foldersSpecLimit:  # default: 50
+    owncloudSaveFolder:  # default: "Attachments"
+    owncloudSuggestions:  # default: true
+    curlProxy:
+    curlProxyAuth:
+    inIframe:  # default: false
+    forceHttps:  # default: false
+    customLoginLink:
+    customLogoutLink:
+    allowExternalLogin:  # default: false
+    allowExternalSso:  # default: false
+    externalSsoKey:
+    httpClientIpCheckProxy:  # default: false
+    fastCacheMemcacheHost:  # default: "127.0.0.1"
+    fastCacheMemcachePort:  # default: 11211
+    fastCacheRedisHost:  # default: "127.0.0.1"
+    fastCacheRedisPort:  # default: 6379
+    useLocalProxyForExternalImages:  # default: false
+    detectImageExifOrientation:  # default: true
+    cookieDefaultPath:
+    cookieDefaultSecure:  # default: false
+    checkNewMessages:  # default: true
+    replaceEnvInConfiguration:
+    startupUrl:
+    strictHtmlParser:  # default: false
+    allowCmd:  # default: false
+    devEmail:
+    devPassword:
+
+domains:
+  - name: "230woldt.de"
+    imapHost: "mail.230woldt.de"
+    imapPort: 993
+    imapSecure: "SSL"
+    imapShortLogin: true
+    sieveUse: false
+    smtpHost: "mail.230woldt.de"
+    smtpPort: 465
+    smtpSecure: "SSL"
+    smtpShortLogin: true
+    smtpAuth: true
