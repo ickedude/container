@@ -85,20 +85,20 @@ data:
     ; Enable CSRF protection (http://en.wikipedia.org/wiki/Cross-site_request_forgery)
     csrf_protection = {{ default true .csrfProtection }}
     custom_server_signature = {{ default "RainLoop" .customServerSignature | quote }}
-    x_frame_options_header = {{ default "" .xFrameOptionsHeader | quote }}
+    x_frame_options_header = {{ default "DENY" .xFrameOptionsHeader | quote }}
     openpgp = {{ default false .openpgp }}
 
     ; Login and password for web admin panel
-    admin_login = {{ default "admin" .adminUser | quote }}
-    admin_password = {{ default "12345" .adminPassword | quote }}
+    admin_login = {{ default (randAlphaNum 32) .adminUser | quote }}
+    admin_password = {{ default (randAlphaNum 32) .adminPassword | quote }}
 
     ; Access settings
-    allow_admin_panel = {{ default true .allowAdminPanel }}
+    allow_admin_panel = {{ default false .allowAdminPanel }}
     allow_two_factor_auth = {{ default false .allowTwoFactorAuth }}
     force_two_factor_auth = {{ default false .forceTwoFactorAuth }}
     hide_x_mailer_header = {{ default false .hideXMailerHeader }}
     admin_panel_host = {{ default "" .adminPanelHost | quote }}
-    admin_panel_key = {{ default "admin" .adminPanelKey | quote }}
+    admin_panel_key = {{ default (randAlphaNum 32) .adminPanelKey | quote }}
     content_security_policy = {{ default "" .contentSecurityPolicy | quote }}
     core_install_access_domain = {{ default "" .coreInstallAccessDomain | quote }}
     {{- end }}
@@ -138,8 +138,15 @@ data:
     {{- end }}
 
     [login]
+    {{- $domains := .Values.domains -}}
     {{- with .Values.app.login }}
-    default_domain = {{ default "" .defaultDomain | quote }}
+    default_domain = {{ if .defaultDomain -}}
+    {{ quote .defaultDomain }}
+    {{- else if $domains -}}
+    {{ quote (first $domains).name }}
+    {{- else -}}
+    ""
+    {{- end }}
 
     ; Allow language selection on webmail login screen
     allow_languages_on_login = {{ default true .allowLanguagesOnLogin }}

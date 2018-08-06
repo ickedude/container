@@ -69,18 +69,18 @@ app:
     # Enable CSRF protection (http://en.wikipedia.org/wiki/Cross-site_request_forgery)
     csrfProtection:  # default: true
     customServerSignature:  # default: "RainLoop"
-    xFrameOptionsHeader:
+    xFrameOptionsHeader:  # default: "DENY"
     openpgp:  # default: false
     # Login and password for web admin panel
-    adminLogin:  # default: "admin"
-    adminPassword:  # default: "12345"
+    adminLogin:  # default: random alhanumeric string
+    adminPassword:  # default: random alphanumeric string
     # Access settings
-    allowAdminPanel:  # default: true
+    allowAdminPanel:  # default: false
     allowTwoFactorAuth:  # default: false
     forceTwoFactorAuth:  # default: false
     hideXMailerHeader:  # default: false
     adminPanelHost:
-    adminPanelKey:  # default: "admin"
+    adminPanelKey:  # default: random alphanumeric string
     contentSecurityPolicy:
     coreInstallAccessDomain:
   ssl:
@@ -109,7 +109,7 @@ app:
     messagelistActions:  # default: true
     attachmentsActions:  # default: true
   login:
-    defaultDomain:
+    defaultDomain:  # default: first defined domain
     # Allow language selection on webmail login screen
     allowLanguagesOnLogin:  # default: true
     determineUserLanguage:  # default: true
@@ -328,14 +328,4 @@ app:
     devPassword:
 
 domains:
-  - name: "230woldt.de"
-    imapHost: "mail.230woldt.de"
-    imapPort: 993
-    imapSecure: "SSL"
-    imapShortLogin: true
-    sieveUse: false
-    smtpHost: "mail.230woldt.de"
-    smtpPort: 465
-    smtpSecure: "SSL"
-    smtpShortLogin: true
-    smtpAuth: true
+
