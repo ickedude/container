@@ -27,7 +27,7 @@ spec:
             name: rainloop-domains
       containers:
         - name: {{ template "rainloop.name" . }}-backend
-          image: "{{ .Values.image.repository }}:rainloop-backend:{{ .Values.image.tag }}"
+          image: "{{ .Values.image.repository }}/rainloop-backend:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           # TODO: check and implement readiness and liveness probe
           readinessProbe:
@@ -45,7 +45,7 @@ spec:
               name: rainloop-domains-config
               readOnly: true
         - name: {{ template "rainloop.name" . }}-frontend
-          image: "{{ .Values.image.repository }}:rainloop-frontend:{{ .Values.image.tag }}"
+          image: "{{ .Values.image.repository }}/rainloop-frontend:{{ .Values.image.tag }}"
           ports:
             - name: http
               containerPort: 80
