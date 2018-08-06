@@ -21,10 +21,10 @@ spec:
             sizeLimit: 1M
         - name: rainloop-app-config
           configMap:
-            name: rainloop-app
+            name: {{ template "rainloop.fullname" . }}-app-cfg
         - name: rainloop-domains-config
           configMap:
-            name: rainloop-domains
+            name: {{ template "rainloop.fullname" . }}-domains
       containers:
         - name: {{ template "rainloop.name" . }}-backend
           image: "{{ .Values.image.repository }}/rainloop-backend:{{ .Values.image.tag }}"
