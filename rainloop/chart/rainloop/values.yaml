@@ -81,7 +81,7 @@ app:
     hideXMailerHeader:  # default: false
     adminPanelHost:
     adminPanelKey:  # default: random alphanumeric string
-    contentSecurityPolicy:
+    contentSecurityPolicy:  # default: "default-src 'none'; script-src 'self' 'unsafe-eval'; connect-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self';"
     coreInstallAccessDomain:
   ssl:
     # Require verification of SSL certificate used.

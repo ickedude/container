@@ -99,7 +99,7 @@ data:
     hide_x_mailer_header = {{ default false .hideXMailerHeader }}
     admin_panel_host = {{ default "" .adminPanelHost | quote }}
     admin_panel_key = {{ default (randAlphaNum 32) .adminPanelKey | quote }}
-    content_security_policy = {{ default "" .contentSecurityPolicy | quote }}
+    content_security_policy = {{ default "default-src 'none'; script-src 'self' 'unsafe-eval'; connect-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self';" .contentSecurityPolicy | quote }}
     core_install_access_domain = {{ default "" .coreInstallAccessDomain | quote }}
     {{- end }}
 
@@ -403,7 +403,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ template "rainloop.fullname" . }}-domains
-  {{ template "std.labels" . }}
+  {{- template "std.labels" . }}
 data:
   {{- range .Values.domains }}
   {{- if (.imapHost) and .smtpHost }}
