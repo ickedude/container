@@ -22,7 +22,7 @@ data:
     theme = {{ default "Default" .theme | quote }}
 
     ; Allow theme selection on settings screen
-    allow_themes = {{ ternary true false .allowThemes }}
+    allow_themes = {{ template "defaulttrue" .allowThemes }}
     allow_user_background = {{ default false .allowUserBackgrund }}
 
     ; Language used by default
@@ -32,9 +32,9 @@ data:
     language_admin = {{ default "en" .languageAdmin | quote }}
 
     ; Allow language selection on settings screen
-    allow_languages_on_settings = {{ ternary true false .allowLanguageOnSettings }}
-    allow_additional_accounts = {{ ternary true false .allowAdditionalAccounts }}
-    allow_additional_identities = {{ ternary true false .allowAdditionalIdentities }}
+    allow_languages_on_settings = {{ template "defaulttrue" .allowLanguageOnSettings }}
+    allow_additional_accounts = {{ template "defaulttrue" .allowAdditionalAccounts }}
+    allow_additional_identities = {{ template "defaulttrue" .allowAdditionalIdentities }}
 
     ;  Number of messages displayed on page by default
     messages_per_page = {{ default 20 .messagesPerPage }}
@@ -46,9 +46,9 @@ data:
 
     [interface]
     {{- with .Values.app.interface }}
-    show_attachment_thumbnail = {{ ternary true false .showAttachmentThumbnail }}
+    show_attachment_thumbnail = {{ template "defaulttrue" .showAttachmentThumbnail }}
     use_native_scrollbars = {{ default false .useNativeScrollbars }}
-    new_move_to_folder_button = {{ ternary true false .newMoveToFolderButton }}
+    new_move_to_folder_button = {{ template "defaulttrue" .newMoveToFolderButton }}
     {{- end }}
 
     [branding]
@@ -57,7 +57,7 @@ data:
     login_background = {{ default "" .loginBackground | quote }}
     login_desc = {{ default "" .loginDesc | quote }}
     login_css = {{ default "" .loginCss | quote }}
-    login_powered = {{ ternary true false .loginPowered }}
+    login_powered = {{ template "defaulttrue" .loginPowered }}
     user_css = {{ default "" .userCss | quote }}
     user_logo = {{ default "" .userLogo | quote }}
     user_logo_title = {{ default "" .userLogoTitle | quote }}
@@ -83,7 +83,7 @@ data:
     [security]
     {{- with .Values.app.security }}
     ; Enable CSRF protection (http://en.wikipedia.org/wiki/Cross-site_request_forgery)
-    csrf_protection = {{ ternary true false .csrfProtection }}
+    csrf_protection = {{ template "defaulttrue" .csrfProtection }}
     custom_server_signature = {{ default "RainLoop" .customServerSignature | quote }}
     x_frame_options_header = {{ default "DENY" .xFrameOptionsHeader | quote }}
     openpgp = {{ default false .openpgp }}
@@ -109,7 +109,7 @@ data:
     verify_certificate = {{ default false .verifyCertificate }}
 
     ; Allow self-signed certificates. Requires verify_certificate.
-    allow_self_signed = {{ ternary true false .allowSelfSigned }}
+    allow_self_signed = {{ template "defaulttrue" .allowSelfSigned }}
 
     ; Location of Certificate Authority file on local filesystem (/etc/ssl/certs/ca-certificates.crt)
     cafile = {{ default "" .cafile | quote }}
@@ -120,21 +120,21 @@ data:
 
     [capa]
     {{- with .Values.app.capa }}
-    folders = {{ ternary true false .folders }}
-    composer = {{ ternary true false .composer }}
-    contacts = {{ ternary true false .contacts }}
-    settings = {{ ternary true false .settings }}
-    quota = {{ ternary true false .quota }}
-    help = {{ ternary true false .help }}
-    reload = {{ ternary true false .reload }}
-    search = {{ ternary true false .search }}
-    search_adv = {{ ternary true false .searchAdv }}
-    filters = {{ ternary true false .filters }}
+    folders = {{ template "defaulttrue" .folders }}
+    composer = {{ template "defaulttrue" .composer }}
+    contacts = {{ template "defaulttrue" .contacts }}
+    settings = {{ template "defaulttrue" .settings }}
+    quota = {{ template "defaulttrue" .quota }}
+    help = {{ template "defaulttrue" .help }}
+    reload = {{ template "defaulttrue" .reload }}
+    search = {{ template "defaulttrue" .search }}
+    search_adv = {{ template "defaulttrue" .searchAdv }}
+    filters = {{ template "defaulttrue" .filters }}
     x-templates = {{ default false .xTemplates }}
-    dangerous_actions = {{ ternary true false .dangerousActions }}
-    message_actions = {{ ternary true false .messageActions }}
-    messagelist_actions = {{ ternary true false .messagelistActions }}
-    attachments_actions = {{ ternary true false .attachmentsActions }}
+    dangerous_actions = {{ template "defaulttrue" .dangerousActions }}
+    message_actions = {{ template "defaulttrue" .messageActions }}
+    messagelist_actions = {{ template "defaulttrue" .messagelistActions }}
+    attachments_actions = {{ template "defaulttrue" .attachmentsActions }}
     {{- end }}
 
     [login]
@@ -149,14 +149,14 @@ data:
     {{- end }}
 
     ; Allow language selection on webmail login screen
-    allow_languages_on_login = {{ ternary true false .allowLanguagesOnLogin }}
-    determine_user_language = {{ ternary true false .determineUserLanguage }}
+    allow_languages_on_login = {{ template "defaulttrue" .allowLanguagesOnLogin }}
+    determine_user_language = {{ template "defaulttrue" .determineUserLanguage }}
     determine_user_domain = {{ default false .determineUserDomain }}
     welcome_page = {{ default false .welcomePage }}
-    hide_submit_button = {{ ternary true false .hideSubmitButton }}
+    hide_submit_button = {{ template "defaulttrue" .hideSubmitButton }}
     forgot_password_link_url = {{ default "" .forgotPasswordLinkUrl | quote }}
     registration_link_url = {{ default "" .registrationLinkUrl | quote }}
-    login_lowercase = {{ ternary true false .loginLowercase }}
+    login_lowercase = {{ template "defaulttrue" .loginLowercase }}
 
     ; This option allows webmail to remember the logged in user
     ; once they closed the browser window.
@@ -184,12 +184,12 @@ data:
 
     ; layout: 0 - no preview, 1 - side preview, 2 - bottom preview
     view_layout = {{ default 1 .viewLayout }}
-    view_use_checkboxes = {{ ternary true false .viewUseCheckboxes }}
+    view_use_checkboxes = {{ template "defaulttrue" .viewUseCheckboxes }}
     autologout = {{ default 30 .autologout }}
     show_images = {{ default false .showImages }}
-    contacts_autosave = {{ ternary true false .contactsAutosave }}
+    contacts_autosave = {{ template "defaulttrue" .contactsAutosave }}
     mail_use_threads = {{ default false .mailUseThreads }}
-    allow_draft_autosave = {{ ternary true false .allowDraftAutosave }}
+    allow_draft_autosave = {{ template "defaulttrue" .allowDraftAutosave }}
     mail_reply_same_folder = {{ default false .mailReplySameFolder }}
     {{- end }}
 
@@ -209,7 +209,7 @@ data:
 
     ; Required for development purposes only.
     ; Disabling this option is not recommended.
-    hide_passwords = {{ ternary true false .hidePasswords }}
+    hide_passwords = {{ template "defaulttrue" .hidePasswords }}
     time_offset = {{ default "0" .timeOffset | quote }}
     session_filter = {{ default "" .sessionFilter | quote }}
 
@@ -285,7 +285,7 @@ data:
     ; The section controls caching of the entire application.
     ;
     ; Enables caching in the system
-    enable = {{ ternary true false .enable }}
+    enable = {{ template "defaulttrue" .enable }}
 
     ; Additional caching key. If changed, cache is purged
     index = {{ default "v1" .index | quote }}
@@ -297,77 +297,77 @@ data:
     fast_cache_index = {{ default "v1" .fastCacheIndex | quote }}
 
     ; Browser-level cache. If enabled, caching is maintainted without using files
-    http = {{ ternary true false .http }}
+    http = {{ template "defaulttrue" .http }}
 
     ; Browser-level cache time (seconds, Expires header)
     http_expires = {{ default 3600 .httpExpires }}
 
     ; Caching message UIDs when searching and sorting (threading)
-    server_uids = {{ ternary true false .serverUids }}
+    server_uids = {{ template "defaulttrue" .serverUids }}
     {{- end }}
 
     [labs]
     {{- with .Values.app.labs }}
     ; Experimental settings. Handle with care.
     ;
-    allow_mobile_version = {{ ternary true false .allowMobileVersion }}
+    allow_mobile_version = {{ template "defaulttrue" .allowMobileVersion }}
     ignore_folders_subscription = {{ default false .ignoreFoldersSubscription }}
-    check_new_password_strength = {{ ternary true false .checkNewPasswordStrength }}
+    check_new_password_strength = {{ template "defaulttrue" .checkNewPasswordStrength }}
     update_channel = {{ default "stable" .updateChannel | quote }}
-    allow_gravatar = {{ ternary true false .allowGravatar }}
-    allow_prefetch = {{ ternary true false .allowPrefetch }}
-    allow_smart_html_links = {{ ternary true false .allowSmartHtmlLinks }}
-    cache_system_data = {{ ternary true false .cacheSystemData }}
-    date_from_headers = {{ ternary true false .dateFromHeaders }}
-    autocreate_system_folders = {{ ternary true false .autocreateSystemFolders }}
+    allow_gravatar = {{ template "defaulttrue" .allowGravatar }}
+    allow_prefetch = {{ template "defaulttrue" .allowPrefetch }}
+    allow_smart_html_links = {{ template "defaulttrue" .allowSmartHtmlLinks }}
+    cache_system_data = {{ template "defaulttrue" .cacheSystemData }}
+    date_from_headers = {{ template "defaulttrue" .dateFromHeaders }}
+    autocreate_system_folders = {{ template "defaulttrue" .autocreateSystemFolders }}
     allow_message_append = {{ default false .allowMessageAppend }}
     disable_iconv_if_mbstring_supported = {{ default false .disableIconvIfMbstringSupported }}
     login_fault_delay = {{ default 1 .loginFaultDelay }}
     log_ajax_response_write_limit = {{ default 300 .logAjaxResponseWriteLimit }}
     allow_html_editor_source_button = {{ default false .allowHtmlEditorSourceButton }}
     allow_html_editor_biti_buttons = {{ default false .allowHtmlEditorBitiButtons }}
-    allow_ctrl_enter_on_compose = {{ ternary true false .allowCtrlEnterOnCompose }}
+    allow_ctrl_enter_on_compose = {{ template "defaulttrue" .allowCtrlEnterOnCompose }}
     try_to_detect_hidden_images = {{ default false .tryToDetectHiddenImages }}
     hide_dangerous_actions = {{ default false .hideDangerousActions }}
     use_app_debug_js = {{ default false .useAppDebugJs }}
     use_mobile_version_for_tablets = {{ default false .useMobileVersionForTablets }}
     use_app_debug_css = {{ default false .useAppDebugCss }}
-    use_imap_sort = {{ ternary true false .useImapSort }}
+    use_imap_sort = {{ template "defaulttrue" .useImapSort }}
     use_imap_force_selection = {{ default false .useImapForceSelection }}
-    use_imap_list_subscribe = {{ ternary true false .useImapListSubscribe }}
-    use_imap_thread = {{ ternary true false .useImapThread }}
+    use_imap_list_subscribe = {{ template "defaulttrue" .useImapListSubscribe }}
+    use_imap_thread = {{ template "defaulttrue" .useImapThread }}
     use_imap_move = {{ default false .useImapMove }}
     use_imap_expunge_all_on_delete = {{ default false .useImapExpungeAllOnDelete }}
     imap_forwarded_flag = {{ default "$Forwarded" .imapForwardedFlag | quote }}
     imap_read_receipt_flag = {{ default "$ReadReceipt" .imapReadReceiptFlag | quote }}
     imap_body_text_limit = {{ default 555000 .imapBodyTextLimit }}
-    imap_message_list_fast_simple_search = {{ ternary true false .imapMessageListFastSimpleSearch }}
+    imap_message_list_fast_simple_search = {{ template "defaulttrue" .imapMessageListFastSimpleSearch }}
     imap_message_list_count_limit_trigger = {{ default 0 .imapMessageListCountLimitTrigger }}
     imap_message_list_date_filter = {{ default 0 .imapMessageListDateFilter }}
     imap_message_list_permanent_filter = {{ default "" .imapMessageListPermanentFilter | quote }}
     imap_message_all_headers = {{ default false .imapMessageAllHeaders }}
     imap_large_thread_limit = {{ default 50 .imapLargeThreadLimit }}
     imap_folder_list_limit = {{ default 200 .imapFolderListLimit }}
-    imap_show_login_alert = {{ ternary true false .imapShowLoginAlert }}
-    imap_use_auth_plain = {{ ternary true false .imapUseAuthPlain }}
+    imap_show_login_alert = {{ template "defaulttrue" .imapShowLoginAlert }}
+    imap_use_auth_plain = {{ template "defaulttrue" .imapUseAuthPlain }}
     imap_use_auth_cram_md5 = {{ default false .imapUseAuthCramMd5 }}
     smtp_show_server_errors = {{ default false .smtpShowServerErrors }}
-    smtp_use_auth_plain = {{ ternary true false .smtpUseAuthPlain }}
+    smtp_use_auth_plain = {{ template "defaulttrue" .smtpUseAuthPlain }}
     smtp_use_auth_cram_md5 = {{ default false .smtpUseAuthCramMd5 }}
     sieve_allow_raw_script = {{ default false .sieveAllowRawScript }}
-    sieve_utf8_folder_name = {{ ternary true false .sieveUtf8FolderName }}
-    sieve_auth_plain_initial = {{ ternary true false .sieveAuthPlainInitial }}
+    sieve_utf8_folder_name = {{ template "defaulttrue" .sieveUtf8FolderName }}
+    sieve_auth_plain_initial = {{ template "defaulttrue" .sieveAuthPlainInitial }}
     sieve_allow_fileinto_inbox = {{ default false .sieveAllowFileintoInbox }}
     imap_timeout = {{ default 300 .imapTimeout }}
     smtp_timeout = {{ default 60 .smtpTimeout }}
     sieve_timeout = {{ default 10 .sieveTimeout }}
     domain_list_limit = {{ default 99 .domainListLimit }}
-    mail_func_clear_headers = {{ ternary true false .mailFuncClearHeaders }}
+    mail_func_clear_headers = {{ template "defaulttrue" .mailFuncClearHeaders }}
     mail_func_additional_parameters = {{ default false .mailFuncAdditionalParameters }}
-    favicon_status = {{ ternary true false .faviconStatus }}
+    favicon_status = {{ template "defaulttrue" .faviconStatus }}
     folders_spec_limit = {{ default 50 .foldersSpecLimit }}
     owncloud_save_folder = {{ default "Attachments" .owncloudSaveFolder | quote }}
-    owncloud_suggestions = {{ ternary true false .owncloudSuggestions }}
+    owncloud_suggestions = {{ template "defaulttrue" .owncloudSuggestions }}
     curl_proxy = {{ default "" .curlProxy | quote }}
     curl_proxy_auth = {{ default "" .curlProxyAuth | quote }}
     in_iframe = {{ default false .inIframe }}
@@ -383,10 +383,10 @@ data:
     fast_cache_redis_host = {{ default "127.0.0.1" .fastCacheRedisHost | quote }}
     fast_cache_redis_port = {{ default 6379 .fastCacheRedisPort }}
     use_local_proxy_for_external_images = {{ default false .useLocalProxyForExternalImages }}
-    detect_image_exif_orientation = {{ ternary true false .detectImageExifOrientation }}
+    detect_image_exif_orientation = {{ template "defaulttrue" .detectImageExifOrientation }}
     cookie_default_path = {{ default "" .cookieDefaultPath | quote }}
     cookie_default_secure = {{ default false .cookieDefaultSecure }}
-    check_new_messages = {{ ternary true false .checkNewMessages }}
+    check_new_messages = {{ template "defaulttrue" .checkNewMessages }}
     replace_env_in_configuration = {{ default "" .replaceEnvInConfiguration | quote }}
     startup_url = {{ default "" .startupUrl | quote }}
     strict_html_parser = {{ default false .strictHtmlParser }}
@@ -421,7 +421,7 @@ data:
     smtp_port = {{ default 25 .smtpPort }}
     smtp_secure = {{ default "None" .smtpSecure | quote }}
     smtp_short_login = {{ default false .smtpShortLogin }}
-    smtp_auth = {{ ternary true false .smtpAuth }}
+    smtp_auth = {{ template "defaulttrue" .smtpAuth }}
     smtp_php_mail = {{ default false .smtpPhpMail }}
     white_list = {{ default "" .whiteList | quote }}
   {{- end -}}
