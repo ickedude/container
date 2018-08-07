@@ -32,11 +32,10 @@ Create chart name and version as used by the chart label.
 {{- end -}}
 
 {{- define "std.labels" }}
-  labels:
-    heritage: {{ .Release.Service }}
-    release: {{ .Release.Name }}
-    chart: {{ printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
-    app: {{ template "rainloop.name" . }}
+  heritage: {{ .Release.Service }}
+  release: {{ .Release.Name }}
+  chart: {{ printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
+  app: {{ template "rainloop.name" . }}
 {{- end }}
 
 {{/*

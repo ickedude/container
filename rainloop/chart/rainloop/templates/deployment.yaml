@@ -3,7 +3,8 @@ apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: {{ template "rainloop.fullname" . }}
-  {{- template "std.labels" . }}
+  labels:
+    {{- include "std.labels" . | indent 2 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -12,7 +13,8 @@ spec:
       release: {{ .Release.Name }}
   template:
     metadata:
-      {{- include "std.labels" . | indent 4 }}
+      labels:
+        {{- include "std.labels" . | indent 6 }}
     spec:
       volumes:
         - name: fpm-run-volume

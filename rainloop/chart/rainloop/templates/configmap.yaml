@@ -3,7 +3,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ template "rainloop.fullname" . }}-app-cfg
-  {{- template "std.labels" . }}
+  labels:
+    {{- include "std.labels" . | indent 2 }}
 data:
   application.ini: |-
     ; RainLoop Webmail configuration file
@@ -403,7 +404,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ template "rainloop.fullname" . }}-domains
-  {{- template "std.labels" . }}
+  labels:
+    {{- include "std.labels" . | indent 2 }}
 data:
   {{- range .Values.domains }}
   {{- if (.imapHost) and .smtpHost }}
