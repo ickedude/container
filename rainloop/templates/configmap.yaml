@@ -428,3 +428,14 @@ data:
     white_list = {{ default "" .whiteList | quote }}
   {{- end -}}
   {{- end }}
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "rainloop.fullname" . }}-nginx-cfg
+  labels:
+    {{- include "std.labels" . | indent 2 }}
+data:
+  rainloop.conf: |-
+    {{ .Files.Get "resources/statics/etc/nginx/sites-enabled/rainloop.conf" }}

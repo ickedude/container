@@ -27,6 +27,9 @@ spec:
         - name: rainloop-domains-config
           configMap:
             name: {{ template "rainloop.fullname" . }}-domains
+        - name: rainloop-nginx-config
+          configMap:
+            name: {{ template "rainloop.fullname" . }}-nginx-cfg
       containers:
         - name: {{ template "rainloop.name" . }}-backend
           image: "{{ .Values.image.repository }}/rainloop-backend:{{ .Values.image.tag }}"
@@ -64,3 +67,5 @@ spec:
           volumeMounts:
             - mountPath: /var/run/php
               name: fpm-run-volume
+            - mountPath: /etc/nginx/sites-enabled
+              name: rainloop-nginx-config

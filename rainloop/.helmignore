@@ -19,3 +19,7 @@
 .project
 .idea/
 *.tmproj
+
+Dockerfile
+resources/webapp
+resources/statics/var
