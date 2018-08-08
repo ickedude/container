@@ -22,8 +22,6 @@ RUN /usr/local/bin/img_build.py --policyrcd forbid \
  && apt-get update \
  && apt-get install -y php-curl php-xml \
  && /usr/local/bin/img_build.py --cleanup --reduce-size --policyrcd allow
-# configure rainloop
-COPY resources/config /
 RUN chown -R www-data:www-data ${DOC_ROOT} \
  && find ${DOC_ROOT} -type d -exec chmod 750 {} \; \
  && find ${DOC_ROOT} -type f -exec chmod 640 {} \;
