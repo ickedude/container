@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ template "rainloop.fullname" . }}-storage-claim
   labels:
-    {{- include "std.labels" . | indent 4 }}
+    {{- include "std.labels" . | indent 2 }}
 spec:
   storageClassName: {{ if .Values.pvClaim }}{{ default "" .Values.pvClaim.storageClassName | quote }}{{ end }}
   accessModes:
