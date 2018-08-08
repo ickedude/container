@@ -11,6 +11,7 @@ image:
 service:
   type: ClusterIP
   port: 80
+  sessionAffinity: "ClientIP"
 
 app:
   # RainLoop Webmail configuration file
