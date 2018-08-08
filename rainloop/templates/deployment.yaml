@@ -27,6 +27,9 @@ spec:
         - name: rainloop-domains-config
           configMap:
             name: {{ template "rainloop.fullname" . }}-domains
+        - name: rainloop-storage
+          persistentVolumeClaim:
+            claimName: {{ template "rainloop.fullname" . }}-storage-claim
         - name: rainloop-nginx-config
           configMap:
             name: {{ template "rainloop.fullname" . }}-nginx-cfg
@@ -49,6 +52,8 @@ spec:
             - mountPath: /var/www/rainloop/data/_data_/_default_/domains
               name: rainloop-domains-config
               readOnly: true
+            - mountPath: /var/www/rainloop/data/_data_/_default_/storage
+              name: rainloop-storage
         - name: {{ template "rainloop.name" . }}-frontend
           image: "{{ .Values.image.repository }}/rainloop-frontend:{{ .Values.image.tag }}"
           ports:
