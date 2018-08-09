@@ -437,6 +437,6 @@ metadata:
   labels:
     {{- include "std.labels" . | indent 2 }}
 data:
-  # odd indentation, see https://github.com/helm/helm/issues/2004
   rainloop.conf: |-
+  {{/* odd indentation, see https://github.com/helm/helm/issues/2004 */}}
 {{ .Files.Get "resources/statics/etc/nginx/sites-enabled/rainloop.conf" | indent 4 }}
