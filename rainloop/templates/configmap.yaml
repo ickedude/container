@@ -100,7 +100,7 @@ data:
     hide_x_mailer_header = {{ default false .hideXMailerHeader }}
     admin_panel_host = {{ default "" .adminPanelHost | quote }}
     admin_panel_key = {{ default (randAlphaNum 32) .adminPanelKey | quote }}
-    content_security_policy = {{ default "default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self';" .contentSecurityPolicy | quote }}
+    content_security_policy = {{ default "default-src 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'; child-src 'self';" .contentSecurityPolicy | quote }}
     core_install_access_domain = {{ default "" .coreInstallAccessDomain | quote }}
     {{- end }}
 
