@@ -33,6 +33,8 @@ domains:
   #   sievePort: 4190
   #   sieveSecure: "None"
 
+passwordSalt:  # default: random string
+
 app:
   # RainLoop Webmail configuration file
   webmail:
