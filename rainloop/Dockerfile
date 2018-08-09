@@ -1,5 +1,4 @@
 ARG CODE_VERSION="0.1.0"
-ARG RAINLOOP_VERSION=1.12.0
 ARG MAINTAINER="bug@230woldt.de"
 ARG DOC_ROOT=/var/www/rainloop
 
