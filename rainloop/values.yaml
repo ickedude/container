@@ -16,6 +16,23 @@ service:
 pvClaim:
   storageClassName: "manual"
 
+domains:
+  # - name: "mydomain.com"
+  #   imapHost: "mail.mydomain.com"
+  #   imapPort: 993
+  #   imapSecure: "SSL"
+  #   imapShortLogin: true
+  #   smtpHost: "mail.mydomain.com"
+  #   smtpPort: 465
+  #   smtpSecure: "SSL"
+  #   smtpShortLogin: true
+  #   smtpAuth: true
+  #   sieveUse: false
+  #   sieveAllowRaw: false
+  #   sieveHost:
+  #   sievePort: 4190
+  #   sieveSecure: "None"
+
 app:
   # RainLoop Webmail configuration file
   webmail:
@@ -330,6 +347,3 @@ app:
     allowCmd:  # default: false
     devEmail:
     devPassword:
-
-domains:
-
