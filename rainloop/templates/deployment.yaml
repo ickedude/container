@@ -74,3 +74,4 @@ spec:
               name: fpm-run-volume
             - mountPath: /etc/nginx/sites-enabled
               name: rainloop-nginx-config
+              readOnly: true
