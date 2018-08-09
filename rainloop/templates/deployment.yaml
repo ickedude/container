@@ -33,7 +33,7 @@ spec:
         - name: rainloop-nginx-config
           configMap:
             name: {{ template "rainloop.fullname" . }}-nginx-cfg
-        - name: rainloop-salt-secret
+        - name: rainloop-salt
           secret:
             secretName: {{ template "rainloop.fullname" . }}-salt-secret
       containers:
