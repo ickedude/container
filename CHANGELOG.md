@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+### Added
+- build.sh supports building several images out of one context
+### Changed
+- splitted rainloop build file into two
 ### Fixed
 - redirecting nginx error.log to stderr
 
