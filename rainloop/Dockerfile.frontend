@@ -1,0 +1,7 @@
+FROM kwoldt/nginx:0.1.0
+ARG DOC_ROOT=/var/www/rainloop
+LABEL maintainer="bug@230woldt.de"
+COPY resources/statics /
+RUN chown -R www-data:www-data ${DOC_ROOT} \
+ && find ${DOC_ROOT} -type d -exec chmod 750 {} \; \
+ && find ${DOC_ROOT} -type f -exec chmod 640 {} \;
