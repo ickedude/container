@@ -7,8 +7,6 @@ RUN /usr/local/bin/img_build.py --policyrcd forbid \
  && /usr/local/bin/img_build.py --cleanup --reduce-size --policyrcd allow \
  && ln -sf /dev/stderr /var/log/nginx/error.log \
  && ln -sf /dev/stdout /var/log/nginx/access.log \
- # remove default config \
- && rm -rf /etc/nginx/sites-enabled/default /var/www/html \
  # hide nginx version
  && sed -i "s/# server_tokens off;/server_tokens off;/g" /etc/nginx/nginx.conf
 
