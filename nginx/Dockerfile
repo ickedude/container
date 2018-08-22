@@ -5,7 +5,7 @@ RUN /usr/local/bin/img_build.py --policyrcd forbid \
  && apt-get update \
  && apt-get install -y nginx-full \
  && /usr/local/bin/img_build.py --cleanup --reduce-size --policyrcd allow \
- && ln -sf /dev/stdout /var/log/nginx/error.log \
+ && ln -sf /dev/stderr /var/log/nginx/error.log \
  && ln -sf /dev/stdout /var/log/nginx/access.log \
  # remove default config \
  && rm -rf /etc/nginx/sites-enabled/default /var/www/html \

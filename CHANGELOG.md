@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+### Fixed
+- redirecting nginx error.log to stderr
 
 ## [0.1.0] - 2018-08-09
 ### Added
