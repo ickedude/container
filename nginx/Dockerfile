@@ -8,7 +8,8 @@ RUN /usr/local/bin/img_build.py --policyrcd forbid \
  && ln -sf /dev/stderr /var/log/nginx/error.log \
  && ln -sf /dev/stdout /var/log/nginx/access.log \
  # hide nginx version
- && sed -i "s/# server_tokens off;/server_tokens off;/g" /etc/nginx/nginx.conf
+ && sed -e 's/# server_tokens off;/server_tokens off;/' \
+        -i /etc/nginx/nginx.conf
 
 EXPOSE 80
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
