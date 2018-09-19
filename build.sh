@@ -58,7 +58,7 @@ while [ $# -gt 0 ]; do
 		fi
 
 		img_id=$(cd "$name"; LANG=C LC_TYPE=C docker build -f "$dockerfile" . | tee /dev/stderr | awk '/Successfully built/{print $NF}')
-		if [ $? -eq 0 ]; then
+		if [ $? -eq 0 ] && [ -n "$img_id" ]; then
 			img_name="$repository/$name"
 			if [ -n "$suffix" ]; then
 				img_name="$img_name-$suffix"
