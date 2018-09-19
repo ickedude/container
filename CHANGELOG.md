@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - splitted rainloop build file into two
 - not removing default nginx config and index file from image
+- php-fpm is logging into stdout/stderr now
+- communication between nginx and php-fpm changed from unix socket to TCP socket
 ### Fixed
 - redirecting nginx error.log to stderr
 
