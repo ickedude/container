@@ -6,10 +6,14 @@ RUN /usr/local/bin/img_build.py --policyrcd forbid \
  && apt-get install -y php-fpm \
  && /usr/local/bin/img_build.py --cleanup --reduce-size --policyrcd allow \
  # configure php \
- # TODO: logging \
  # TODO: health check
  && mkdir -p /run/php \
- && sed -e 's/^;catch_workers_output.*/catch_workers_output = yes/' \
+ && sed -e 's#;error_log = .*#error_log = /dev/stderr#' \
+        -i /etc/php/*/fpm/php.ini
+ && sed -e 's#error_log = .*#error_log = /dev/stderr#' \
+        -i /etc/php/*/fpm/php-fpm.conf
+ && sed -e 's#^;access.log.*#access.log = /dev/stdout#' \
+        -e 's/^;catch_workers_output.*/catch_workers_output = yes/' \
         -i /etc/php/*/fpm/pool.d/www.conf
 
 VOLUME ["/var/run/php"]
